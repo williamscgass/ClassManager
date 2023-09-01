@@ -1,0 +1,20 @@
+type Student {
+  id: ID!
+  name: String!
+}
+
+type Assignment {
+    name: String!
+}
+
+type AssignmentSubmission {
+    assignment: Assignment!
+    student: Student!
+}
+
+type Query {
+  students: [Student!]!
+  assignments: [Assignment!]!
+  assignmentSubmissions(assignment: String): [AssignmentSubmission!]!
+  hello: String!
+}
