@@ -57,11 +57,11 @@ async function populateData() {
 
     // Simulate assignment submissions
     // Simulate assignment submissions
-    const submissionSql = 'INSERT INTO assignment_submissions (student_id, assignment_id, submission_date) VALUES ?';
+    const submissionSql = 'INSERT INTO assignment_submissions (student_name, assignment_name, submission_date) VALUES ?';
     const submissionValues = [
-        [1, 1, new Date()], // Student 1 submitted Assignment 1
-        [2, 1, new Date()], // Student 2 submitted Assignment 1
-        [3, 1, new Date()], // Student 3 submitted Assignment 1
+        ["alice123", "Homework 1", new Date()], // Student 1 submitted Assignment 1
+        ["bob456", "Homework 1", new Date()], // Student 2 submitted Assignment 1
+        ["charlie789", "Homework 1", new Date()], // Student 3 submitted Assignment 1
         // ... (add more submissions)
     ];
     await queryAsync(submissionSql, [submissionValues]);

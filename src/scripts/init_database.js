@@ -18,7 +18,7 @@ connection.connect((err) => {
   console.log('Connected to the database');
 
   // Define SQL queries to create tables
-  const createAssignmentsTable = `--sql
+  const createAssignmentsTable = `
     CREATE TABLE assignments (
       id INT AUTO_INCREMENT PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
@@ -28,7 +28,7 @@ connection.connect((err) => {
     )
   `;
 
-  const createStudentsTable = `--sql
+  const createStudentsTable = `
     CREATE TABLE students (
       id INT AUTO_INCREMENT PRIMARY KEY,
       github_username VARCHAR(100) NOT NULL,
@@ -37,38 +37,15 @@ connection.connect((err) => {
     )
   `;
 
-  const createAssignmentSubmissionsTable = `--sql
+  const createAssignmentSubmissionsTable = `
     CREATE TABLE assignment_submissions (
       id INT AUTO_INCREMENT PRIMARY KEY,
-      assignment_id INT,
-      student_id INT,
+      assignment_name VARCHAR(255) NOT NULL,
+      student_name VARCHAR(255) NOT NULL,
       submission_date TIMESTAMP NOT NULL
       -- other submission-related fields
     )
   `;
-
-  const createSubmissionStatsTable = `--sql
-    CREATE TABLE submission_stats (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      submission_id INT,
-      num_test_cases_passed INT,
-      points_scored DECIMAL,
-      execution_time_ms INT
-      -- other submission stats
-    )
-  `;
-
-  const createAssignmentStatsTable = `--sql
-    CREATE TABLE assignment_stats (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      assignment_id INT,
-      average_score DECIMAL,
-      average_speed DECIMAL,
-      num_submitted INT
-      -- other assignment stats
-    )
-  `;
-
   // Execute the queries to create tables
   connection.query(createAssignmentsTable, (err) => {
     if (err) throw err;
@@ -84,17 +61,6 @@ connection.connect((err) => {
     if (err) throw err;
     console.log('Assignment submissions table created');
   });
-
-  connection.query(createSubmissionStatsTable, (err) => {
-    if (err) throw err;
-    console.log('Submission stats table created');
-  });
-
-  connection.query(createAssignmentStatsTable, (err) => {
-    if (err) throw err;
-    console.log('Assignment stats table created');
-  });
-
   // Close the database connection
   connection.end((err) => {
     if (err) {

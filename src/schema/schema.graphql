@@ -8,8 +8,8 @@ type Assignment {
 }
 
 type AssignmentSubmission {
-    assignment: Assignment!
-    student: Student!
+    assignment: String!
+    student: String!
 }
 
 type Query {

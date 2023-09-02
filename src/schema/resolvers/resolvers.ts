@@ -13,9 +13,10 @@ export const queryResolvers = {
         return result;
     },
 
-    assignmentSubmissions: async (_parent: any, args: any, _context: any, _info: any) => {
-        const { assignmentId } = args;
-        const result = await getAssignmentSubmissions(assignmentId);
+    assignmentSubmissions: async (args: any) => {
+        const { assignment } = args;
+        console.log(assignment);
+        const result = await getAssignmentSubmissions(assignment);
         return result;
     },
 
