@@ -15,7 +15,6 @@ export const queryResolvers = {
 
     assignmentSubmissions: async (args: any) => {
         const { assignment } = args;
-        console.log(assignment);
         const result = await getAssignmentSubmissions(assignment);
         return result;
     },

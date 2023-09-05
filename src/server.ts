@@ -1,5 +1,6 @@
 import express, {Express, Request, Response} from 'express';
 import { graphqlHTTP } from 'express-graphql';
+import cors from 'cors';
 import graphql, {buildSchema} from 'graphql';
 import 'graphql-import-node';
 import mysql from 'mysql2';
@@ -16,6 +17,7 @@ console.log(gSchema)
 const root = queryResolvers;
 
 const app = express()
+app.use(cors());
 app.use(
   "/api",
   graphqlHTTP({
